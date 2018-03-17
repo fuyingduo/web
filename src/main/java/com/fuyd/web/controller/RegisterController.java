@@ -1,6 +1,7 @@
 package com.fuyd.web.controller;
 
 import com.fuyd.web.entity.User;
+import com.fuyd.web.exception.HandleException;
 import com.fuyd.web.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +35,7 @@ public class RegisterController {
             user.setUsername(username);
             user.setPassword(password);
             iUserService.register(user);
-        } catch (Exception e) {
+        } catch (HandleException e) {
             log.error(REGISTER_CLASS + "accountRegistration error:{}", e.getMessage());
             return "/view/register-error";
         }

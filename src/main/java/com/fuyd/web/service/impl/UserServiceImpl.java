@@ -2,6 +2,7 @@ package com.fuyd.web.service.impl;
 
 import com.fuyd.web.dao.UserMapper;
 import com.fuyd.web.entity.User;
+import com.fuyd.web.exception.HandleException;
 import com.fuyd.web.service.IUserService;
 import com.fuyd.web.wx.method.GetAccessToken;
 import net.sf.json.JSONObject;
@@ -56,9 +57,10 @@ public class UserServiceImpl implements IUserService{
         return user;
     }
 
-    public Boolean register(User user) {
+    public Boolean register(User user) throws HandleException {
         if (user == null) {
             log.error(USER_CLASS + "[register] user is null");
+            throw new HandleException(10001);
         }
 
         return false;

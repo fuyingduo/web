@@ -1,6 +1,7 @@
 package com.fuyd.web.service;
 
 import com.fuyd.web.entity.User;
+import com.fuyd.web.exception.HandleException;
 
 public interface IUserService {
 
@@ -14,6 +15,6 @@ public interface IUserService {
      * @param user
      * @return
      */
-    Boolean register(User user);
+    Boolean register(User user) throws HandleException;
 
 }
