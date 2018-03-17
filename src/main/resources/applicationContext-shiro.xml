@@ -48,6 +48,7 @@
                 /** = authc-->
                 /view/shiro-success = anon
                 /view/shiro-login = anon
+                /user*/ = anon
             </value>
         </property>
     </bean>

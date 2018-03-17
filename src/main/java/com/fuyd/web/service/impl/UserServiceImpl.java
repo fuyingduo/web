@@ -4,23 +4,23 @@ import com.fuyd.web.dao.UserMapper;
 import com.fuyd.web.entity.User;
 import com.fuyd.web.exception.HandleException;
 import com.fuyd.web.service.IUserService;
-import com.fuyd.web.wx.method.GetAccessToken;
-import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 
 @Service("iUserService")
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl implements IUserService {
 
     @Resource
     private UserMapper iUserDao;
 
-    @Resource
-    private GetAccessToken getAccessToken;
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
 
     private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
     private static final String USER_CLASS = "[UserServiceImpl]";
@@ -46,10 +46,8 @@ public class UserServiceImpl implements IUserService{
         if (id == null) {
             return null;
         }
-        JSONObject json = getAccessToken.getToken();
-        String accessToken = (String)json.get("access_token");
-        Integer expiresIn = (Integer)json.get("expires_in");
-        log.info(USER_CLASS + "[findUserById] json:{}", json);
+
+        redisTemplate.opsForValue().set("id", "1");
         User user = iUserDao.selectUserById(id);
         if (user == null) {
             return null;
@@ -65,4 +63,5 @@ public class UserServiceImpl implements IUserService{
 
         return false;
     }
+
 }

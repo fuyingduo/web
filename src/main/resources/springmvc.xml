@@ -22,6 +22,8 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <import resource="spring-redis.xml"/>
+
     <!--  配置适配器  -->
     <!-- <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
          &lt;!&ndash;在业务方法的返回值和权限之间使用@ResponseBody注解表示返回值对象需要转成JSON文本&ndash;&gt;

@@ -50,6 +50,8 @@
 
     <import resource="classpath:applicationContext-shiro.xml"/>
 
+    <!--  reids 配置  -->
+
     <!--  配置事物管理器  -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
