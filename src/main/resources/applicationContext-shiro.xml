@@ -33,8 +33,8 @@
         <!--  配置登陆页面  -->
         <property name="loginUrl" value="/index.jsp"/>
         <!--  登陆成功后的一面  -->
-        <property name="successUrl" value="/view/shiro-success.jsp"/>
-        <property name="unauthorizedUrl" value="/view/shiro-unauthorized.jsp"/>
+        <property name="successUrl" value="/view/reguster-success.jsp"/>
+        <property name="unauthorizedUrl" value="/view/reguster-success.jsp"/>
         <!--  具体配置需要拦截哪些 URL, 以及访问对应的 URL 时使用 Shiro 的什么 Filter 进行拦截.  -->
         <property name="filterChainDefinitions">
             <value>
@@ -46,8 +46,9 @@
                 /user.jsp = roles[user]
                 /admin.jsp = roles[admin]
                 /** = authc-->
-                /view/shiro-success = anon
-                /view/shiro-login = anon
+                /view/reguster-error = anon
+                /view/reguster-success = anon
+                /view/login = anon
                 /user*/ = anon
             </value>
         </property>

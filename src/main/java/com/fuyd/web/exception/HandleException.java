@@ -2,6 +2,7 @@ package com.fuyd.web.exception;
 
 import lombok.Data;
 import org.springframework.util.StringUtils;
+
 import java.io.*;
 import java.util.Properties;
 
@@ -15,6 +16,23 @@ public class HandleException extends Exception {
     private String message;
 
     private Integer code;
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
 
     public HandleException(Integer code) {
         super();

@@ -1,20 +1,17 @@
 package com.fuyd.web.service;
 
-import com.fuyd.web.entity.User;
 import com.fuyd.web.exception.HandleException;
 
 public interface IUserService {
 
-    int addUser(String name);
-
-    User findUserById(Long id);
-
     /**
-     * 用户注册
+     * 添加用户
      *
-     * @param user
-     * @return
+     * @param username
+     * @param password
+     * @param name
+     * @throws HandleException
      */
-    Boolean register(User user) throws HandleException;
+    void register(String username, String password, String name) throws HandleException;
 
 }

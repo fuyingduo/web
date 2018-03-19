@@ -37,7 +37,7 @@
 
     <!--  自动扫描mybatis映射文件和接口外包  -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.fuyd.web.dao"/>
+        <property name="basePackage" value="com.fuyd.web.dao.mapper"/>
     </bean>
 
     <!--  shiro  -->

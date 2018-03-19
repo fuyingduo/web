@@ -1,4 +1,4 @@
-package com.fuyd.web.dao;
+package com.fuyd.web.dao.mapper;
 
 import com.fuyd.web.entity.User;
 import org.apache.ibatis.annotations.Mapper;

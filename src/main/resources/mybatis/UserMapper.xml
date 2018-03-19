@@ -3,9 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fuyd.web.dao.UserMapper">
+<mapper namespace="com.fuyd.web.dao.mapper.UserMapper">
     <insert id="addUser" parameterType="com.fuyd.web.entity.User">
-        insert into user(id, name) value(#{id}, #{name})
+        insert into user(id, username, password, name) value(#{id}, #{username}, #{password}, #{name})
     </insert>
     <select id="selectUserById" parameterType="java.lang.Long" resultType="com.fuyd.web.entity.User">
         select * from user u where u.id = #{id}

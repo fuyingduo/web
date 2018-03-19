@@ -5,48 +5,21 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 9200315871109541104L;
-    private Long id;
 
-    private String name;
-
-    private String token;
-
-    private Integer tokenTime;
+    private String id;
 
     private String username;
 
     private String password;
 
-    public Long getId() {
+    private String name;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public Integer getTokenTime() {
-        return tokenTime;
-    }
-
-    public void setTokenTime(Integer tokenTime) {
-        this.tokenTime = tokenTime;
     }
 
     public String getUsername() {
@@ -63,5 +36,23 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -1,20 +1,16 @@
 package com.fuyd.web.controller;
 
-import com.fuyd.web.entity.User;
+import com.fuyd.web.exception.HandleException;
 import com.fuyd.web.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -26,25 +22,23 @@ public class UserController {
     private static final String USER_CLASS = "[UserController]";
 
     private static final Logger log = LoggerFactory.getLogger(UserController.class);
+    private static final String KEY = "code";
+    private static final String VALUE = "message";
 
-    @RequestMapping(value = "/addUser", method = RequestMethod.GET)
-    public String addUser(@RequestParam(value = "name") String name, Model model) {
-        if (StringUtils.isEmpty(name)) {
-            log.error(USER_CLASS + "[UserController] name:{}", name);
+    private static final Integer CODE = 200;
+    private static final String MESSAGE = "success";
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public ModelAndView register(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "name") String name) {
+        ModelAndView model = new ModelAndView();
+        try {
+            iUserService.register(username, password, name);
+            model.addObject(KEY, CODE).addObject(VALUE, MESSAGE).setViewName("/view/reguster-success");
+        } catch (HandleException e) {
+            model.addObject(KEY, e.getCode()).addObject(VALUE, e.getMessage()).setViewName("/view/register-error");
+            log.error(USER_CLASS + "[register] error:{}", e.getMessage());
         }
-        int i = iUserService.addUser(name);
-        log.info(USER_CLASS + "[UserController] i:{}", i);
-        model.addAttribute("id", i);
-        return "index";
+        return model;
     }
 
-    @RequestMapping(value = "getUser", method = RequestMethod.GET)
-    public String getUser(@RequestParam(value = "id") Long id, Model model) {
-        if (id == null) {
-            log.error(USER_CLASS + "[getUser] id is null");
-        }
-        User user = iUserService.findUserById(id);
-        model.addAttribute("user", user);
-        return "index";
-    }
 }
