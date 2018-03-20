@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class GainUID {
 
-    private static final String base = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private static final String base = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final Integer len = 10;
     private static final DateFormat DATE = new SimpleDateFormat("HHmm");
     private static final DateFormat YEARS = new SimpleDateFormat("ddMMyyyy");
