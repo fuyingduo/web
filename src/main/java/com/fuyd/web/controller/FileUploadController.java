@@ -35,7 +35,8 @@ public class FileUploadController {
             }
             profileName.transferTo(targetFile);
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(FILE_CLASS + "[fileUpload] error:{}", e.getMessage());
+            return "/view/upload-error";
         }
         return "/view/upload-success";
     }
