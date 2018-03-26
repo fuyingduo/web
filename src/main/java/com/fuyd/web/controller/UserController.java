@@ -41,4 +41,9 @@ public class UserController {
         return model;
     }
 
+    @RequestMapping(value = "/job", method = RequestMethod.GET)
+    public void executeJob() {
+        iUserService.executeUserJob();
+    }
+
 }

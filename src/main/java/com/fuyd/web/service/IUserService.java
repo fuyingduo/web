@@ -14,4 +14,9 @@ public interface IUserService {
      */
     void register(String username, String password, String name) throws HandleException;
 
+    /**
+     * 执行job
+     */
+    void executeUserJob();
+
 }

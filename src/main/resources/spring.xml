@@ -50,7 +50,17 @@
 
     <import resource="classpath:applicationContext-shiro.xml"/>
 
-    <!--  reids 配置  -->
+    <!--  线程池  -->
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!--  线程池最小维护数量  -->
+        <property name="corePoolSize" value="2"/>
+        <!--  线程池所维护县城所允许空闲时间  -->
+        <property name="keepAliveSeconds" value="500"/>
+        <!--  线程池最大维护数量  -->
+        <property name="maxPoolSize" value="5"/>
+        <!--  线程池所使用到缓冲队列  -->
+        <property name="queueCapacity" value="20"/>
+    </bean>
 
     <!--  配置事物管理器  -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
