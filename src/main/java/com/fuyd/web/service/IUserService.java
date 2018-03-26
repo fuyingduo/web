@@ -16,7 +16,9 @@ public interface IUserService {
 
     /**
      * 执行job
+     *
+     * @throws HandleException
      */
-    void executeUserJob();
+    void executeUserJob() throws HandleException;
 
 }

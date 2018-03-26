@@ -18,7 +18,6 @@ import org.springframework.util.StringUtils;
 import javax.annotation.Resource;
 import java.io.IOException;
 
-
 @Service("iUserService")
 public class UserServiceImpl extends RedisManager implements IUserService {
 
@@ -52,12 +51,12 @@ public class UserServiceImpl extends RedisManager implements IUserService {
         User resultUser = userDao.addUser(user);
         if (resultUser == null) {
             LOGGER.error(USER_CLASS + "[register] resultUser is null");
-            throw new HandleException(10001);
+            throw new HandleException(10002);
         }
         setUser(user);
     }
 
-    public void executeUserJob() {
+    public void executeUserJob() throws HandleException {
         executeJob();
     }
 
@@ -72,6 +71,5 @@ public class UserServiceImpl extends RedisManager implements IUserService {
         } catch (IOException e) {
             LOGGER.error(USER_CLASS + "[executeJob] error:{}", e.getMessage());
         }
-
     }
 }

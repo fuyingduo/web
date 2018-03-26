@@ -43,7 +43,11 @@ public class UserController {
 
     @RequestMapping(value = "/job", method = RequestMethod.GET)
     public void executeJob() {
-        iUserService.executeUserJob();
+        try {
+            iUserService.executeUserJob();
+        } catch (HandleException e) {
+            log.error(USER_CLASS + "[executeJob] error:{}", e.getMessage());
+        }
     }
 
 }

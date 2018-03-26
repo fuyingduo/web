@@ -1,9 +1,11 @@
 package com.fuyd.web.exception;
 
+import com.fuyd.web.listenter.UploadListenter;
 import lombok.Data;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
+import java.util.Map;
 import java.util.Properties;
 
 @Data
@@ -16,6 +18,12 @@ public class HandleException extends Exception {
     private String message;
 
     private Integer code;
+
+    private static Map<String, String> map = null;
+
+    static {
+        map = UploadListenter.proMap;
+    }
 
     @Override
     public String getMessage() {
@@ -48,13 +56,17 @@ public class HandleException extends Exception {
 
     public static String gainExceptionMessage(Integer code) {
         String result = null;
-        Properties properties = new Properties();
         try {
-            InputStream inputStream = new FileInputStream(new File(PROFILE));
-            properties.load(inputStream);
-            result = properties.getProperty(code.toString());
-            if (StringUtils.isEmpty(result)) {
-                result = UNUSUAL;
+            if (map == null) {
+                Properties properties = new Properties();
+                InputStream inputStream = new FileInputStream(new File(PROFILE));
+                properties.load(inputStream);
+                result = properties.getProperty(code.toString());
+                if (StringUtils.isEmpty(result)) {
+                    result = UNUSUAL;
+                }
+            } else {
+                result = map.get(code.toString());
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
