@@ -21,6 +21,16 @@
         <param-value>classpath:spring.xml</param-value>
     </context-param>
 
+    <!--  启动spring之后加载监听  -->
+    <listener>
+        <listener-class>com.fuyd.web.listenter.InitListenter</listener-class>
+    </listener>
+
+    <!--  启动spring之前加载监听  -->
+    <listener>
+        <listener-class>com.fuyd.web.listenter.UploadListenter</listener-class>
+    </listener>
+
     <!--  spring核型控制器  -->
     <servlet>
         <servlet-name>springmvc</servlet-name>
